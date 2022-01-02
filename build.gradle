@@ -17,7 +17,8 @@ buildscript {
             'constraint'  : '2.1.2',
             'material'    : '1.4.0',
             'dagger'      : '2.40.1',
-            'lifecycle'   : '2.1.0'
+            'lifecycle'   : '2.1.0',
+            'retrofit'    : '2.6.2'
     ]
     ext.libraries = [
             // Kotlin standard library
@@ -44,7 +45,10 @@ buildscript {
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
 
             // Log
-            "com.jakewharton.timber:timber:${versions.timber}"
+            "com.jakewharton.timber:timber:${versions.timber}",
+
+            // Network
+            "com.squareup.retrofit2:retrofit:${versions.retrofit}",
     ]
     ext.kaptLibraries = [
             // DI
