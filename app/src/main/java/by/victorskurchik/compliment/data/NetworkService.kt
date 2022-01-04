@@ -1,8 +1,9 @@
-package by.victorskurchik.compliment.domain
+package by.victorskurchik.compliment.data
 
 import by.victorskurchik.compliment.domain.models.Compliment
+import retrofit2.http.GET
 
-interface ComplimentRepository {
+interface NetworkService {
 
     suspend fun getCompliment(): Compliment
 }

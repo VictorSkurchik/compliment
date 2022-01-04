@@ -1,18 +1,28 @@
 package by.victorskurchik.compliment
 
 import android.app.Application
+import by.victorskurchik.compliment.di.AppComponent
+import by.victorskurchik.compliment.di.DaggerAppComponent
 import timber.log.Timber
 
 class ComplimentApp : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
-        initTimber()
+    val appComponent: AppComponent by lazy {
+        initializeComponent()
     }
 
-    private fun initTimber() {
+    override fun onCreate() {
+        super.onCreate()
+        initializeTimber()
+    }
+
+    private fun initializeTimber() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+    }
+
+    private fun initializeComponent(): AppComponent {
+        return DaggerAppComponent.create()
     }
 }
