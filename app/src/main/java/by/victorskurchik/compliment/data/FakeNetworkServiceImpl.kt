@@ -24,7 +24,7 @@ class FakeNetworkServiceImpl @Inject constructor() : NetworkService {
             "I see a lot of myself in you",
             "Damn. You're looking good!",
             "Yes, you are the fairest of them all",
-            "At least two friends are going to name their child and/or goldfish after you",
+            "At least two friends are going to name their child after you",
             "You are freakishly good at thumb wars",
             "The FBI tapped your phone just to hear the sound of your voice",
             "You never forget to fill the ice-cube tray",

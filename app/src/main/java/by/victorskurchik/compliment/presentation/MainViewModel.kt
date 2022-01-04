@@ -13,15 +13,25 @@ class MainViewModel @Inject constructor(
     private val getComplimentUseCase: GetComplimentUseCase
 ) : ViewModel() {
 
-    private val _compliment = MutableStateFlow("Initial compliment")
+    private val _compliment = MutableStateFlow("Click me")
     val compliment: StateFlow<String>
         get() = _compliment
+
+    init {
+        viewModelScope.launch {
+            getNextCompliment()
+        }
+    }
 
     fun onMainViewClicked() {
         viewModelScope.launch {
             Timber.d("Main view clicked")
-            val nextCompliment = getComplimentUseCase()
-            _compliment.value = nextCompliment.message
+            getNextCompliment()
         }
+    }
+
+    private suspend fun getNextCompliment() {
+        val nextCompliment = getComplimentUseCase()
+        _compliment.value = nextCompliment.message
     }
 }

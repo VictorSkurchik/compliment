@@ -1,10 +1,12 @@
 package by.victorskurchik.compliment.presentation
 
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import by.victorskurchik.compliment.ComplimentApp
+import by.victorskurchik.compliment.R
 import by.victorskurchik.compliment.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.collect
 
@@ -27,9 +29,23 @@ class MainActivity : AppCompatActivity() {
             viewModel.onMainViewClicked()
         }
 
+        val animCrossFadeIn = AnimationUtils.loadAnimation(
+            applicationContext,
+            R.anim.fade_in
+        )
+
+        val animCrossFadeOut = AnimationUtils.loadAnimation(
+            applicationContext,
+            R.anim.fade_out
+        )
+
         lifecycleScope.launchWhenStarted {
             viewModel.compliment.collect { compliment ->
-                binding.tvCompliment.text = compliment
+                binding.tvCompliment.apply {
+                    startAnimation(animCrossFadeOut)
+                    text = compliment
+                    startAnimation(animCrossFadeIn)
+                }
             }
         }
     }
